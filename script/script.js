@@ -136,7 +136,7 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  var randomise = Math.floor(math.random() * arr.length);
+  var randomise = Math.floor(Math.random() * arr.length);
   return arr[randomise];
   }
 
@@ -144,7 +144,25 @@ function getRandom(arr) {
 function generatePassword() {
   var passwordRecipe = getPasswordOptions();
   var passwordArray = [];
-  var finalPassword = ""
+  var finalPassword = "";
+
+  for (i = 0; i < passwordRecipe.passwordLength; i++) {
+    finalPassword += getRandom(passwordArray);
+  } if (passwordRecipe.lowerCase) {
+      for (i of lowerCasedCharacters)
+        passwordArray.push(i);
+  } if (passwordRecipe.upperCase) {
+      for (var i of upperCasedCharacters)
+        passwordArray.push(i);
+  } if (passwordRecipe.numeric) {
+      for (var i of numericCharacters)
+        passwordArray.push(i);
+  } if (passwordRecipe.specialChar) {
+      for (var i of specialCharacters)
+        passwordArray.push(i);
+  }
+console.log(passwordArray);
+
 }
 
 // Get references to the #generate element
