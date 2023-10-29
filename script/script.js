@@ -101,12 +101,12 @@ function getPasswordOptions() {
 
 // passwordOptions = Object.fromEntries(
 //   Object.entries(passwordOptions).map(([key, value]) => [key, value.toLowerCase()])
-// );
+// 
   
   while (true) {
     var passwordLength = prompt("How many characters would you like? (between 8 - 128)");
     if (isNaN(passwordLength)) {
-        alert("Enter a valid number")
+        alert("Enter a valid number");
     } else if (passwordLength >= 8 && passwordLength <= 128) {
         passwordOptions.passwordLength = passwordLength; break;
     } else {
@@ -136,12 +136,15 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  var passwordRecipe = getPasswordOptions();
-  for (var n = 0; n < passwordRecipe.passwordLength)
-}
+  var randomise = Math.floor(math.random() * arr.length);
+  return arr[randomise];
+  }
 
 // Function to generate password with user input
 function generatePassword() {
+  var passwordRecipe = getPasswordOptions();
+  var passwordArray = [];
+  var finalPassword = ""
 }
 
 // Get references to the #generate element
