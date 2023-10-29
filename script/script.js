@@ -91,37 +91,57 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  // var passwordLength = prompt("How many characters would you like? (between 8-128)");
-  // var LowerCase = prompt("Do you want to include lower case letters? (answer Y or N)");
-  // var UpperCase = prompt("Do you want your password to include upper case letters? (answer Y or N)");
-  // var Numeric = prompt("Do you want your password to include numbers? (answer Y or N)");
-  // var specialChar = prompt("Do you want your password to include special characters? (answer Y or N)");
-  var passwordRequirements = {
-    passwordLength: passwordLength
-    // lowerCase: lowerCase,
-    // upperCase: upperCase,
-    // numbers: numbers,
-    // specialChar: specialChar
-  } 
+  var passwordOptions = {
+    passwordLength: passwordLength,
+    lowerCase: lowerCase,
+    upperCase: upperCase,
+    numeric: numeric,
+    specialChar: specialChar
+  }
+
+// passwordOptions = Object.fromEntries(
+//   Object.entries(passwordOptions).map(([key, value]) => [key, value.toLowerCase()])
+// );
+  
   while (true) {
-    var passwordLength = prompt("How many characters would you like? (between 8-128)");
-    if (passwordLength >= 8 && passwordLength <= 128) {
-        passwordRequirements.passwordLength = passwordLength; break;
+    var passwordLength = prompt("How many characters would you like? (between 8 - 128)");
+    if (isNaN(passwordLength)) {
+        alert("Enter a valid number")
+    } else if (passwordLength >= 8 && passwordLength <= 128) {
+        passwordOptions.passwordLength = passwordLength; break;
     } else {
         alert("Password must be between 8 and 128 characters long!");
     }
-}
-console.log(passwordLength);
+  }
+
+  while (true) {
+    var lowerCase = prompt("Do you want to include lower case letters? (answer Y or N)");
+    var upperCase = prompt("Do you want to include upper case letters? (answer Y or N)");
+    var numeric = prompt("Do you want to include numbers? (answer Y or N)");
+    var specialChar = prompt("Do you want to include special characters? (answer Y or N)");
+    if (lowerCase === "n" && upperCase === "n" && numeric === "n" && specialChar ==="n") { 
+        alert("You must choose at least one chacter type");
+    } else if (
+        (lowerCase === "y" || lowerCase === "n") &&
+        (upperCase === "y" || upperCase === "n") &&
+        (numeric === "y" || numeric === "n") &&
+        (specialChar === "y" || specialChar === "n")
+    ) {
+        return passwordOptions;
+    } else { 
+        alert("Please only answer either Y or N")
+    }
+  }
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  var passwordRecipe = getPasswordOptions();
+  for (var n = 0; n < passwordRecipe.passwordLength)
 }
 
 // Function to generate password with user input
 function generatePassword() {
-  var passwordOptions = getPasswordOptions();
 }
 
 // Get references to the #generate element
