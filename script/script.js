@@ -91,16 +91,22 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var passwordLength = prompt("How many characters would you like? (between 8-128)");
-  var chosenLength = []
+  // var passwordLength = prompt("How many characters would you like? (between 8-128)");
   // var LowerCase = prompt("Do you want to include lower case letters? (answer Y or N)");
   // var UpperCase = prompt("Do you want your password to include upper case letters? (answer Y or N)");
   // var Numeric = prompt("Do you want your password to include numbers? (answer Y or N)");
   // var specialChar = prompt("Do you want your password to include special characters? (answer Y or N)");
-
+  var passwordRequirements = {
+    passwordLength: passwordLength
+    // lowerCase: lowerCase,
+    // upperCase: upperCase,
+    // numbers: numbers,
+    // specialChar: specialChar
+  } 
   while (true) {
+    var passwordLength = prompt("How many characters would you like? (between 8-128)");
     if (passwordLength >= 8 && passwordLength <= 128) {
-        break;
+        passwordRequirements.passwordLength = passwordLength; break;
     } else {
         alert("Password must be between 8 and 128 characters long!");
     }
