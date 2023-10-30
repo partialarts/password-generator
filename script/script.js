@@ -97,12 +97,7 @@ function getPasswordOptions() {
     upperCase: upperCase,
     numeric: numeric,
     specialChar: specialChar
-  }
-
-// passwordOptions = Object.fromEntries(
-//   Object.entries(passwordOptions).map(([key, value]) => [key, value.toLowerCase()])
-// 
-  
+  };
   while (true) {
     var passwordLength = prompt("How many characters would you like? (between 8 - 128)");
     if (isNaN(passwordLength)) {
@@ -113,7 +108,6 @@ function getPasswordOptions() {
         alert("Password must be between 8 and 128 characters long!");
     }
   }
-
   while (true) {
     var lowerCase = prompt("Do you want to include lower case letters? (answer Y or N)");
     var upperCase = prompt("Do you want to include upper case letters? (answer Y or N)");
@@ -127,11 +121,16 @@ function getPasswordOptions() {
         (numeric === "y" || numeric === "n") &&
         (specialChar === "y" || specialChar === "n")
     ) {
-        return passwordOptions;
+        passwordOptions.lowerCase = lowerCase;
+        passwordOptions.upperCase = upperCase;
+        passwordOptions.numeric = numeric;
+        passwordOptions.specialChar = specialChar;
+        console.log(passwordOptions); break;
     } else { 
         alert("Please only answer either Y or N")
     }
   }
+  return passwordOptions;
 }
 
 // Function for getting a random element from an array
@@ -146,22 +145,27 @@ function generatePassword() {
   var passwordArray = [];
   var finalPassword = "";
 
-  for (i = 0; i < passwordRecipe.passwordLength; i++) {
-    finalPassword += getRandom(passwordArray);
-  } if (passwordRecipe.lowerCase) {
-      for (i of lowerCasedCharacters)
+   if (passwordRecipe.lowerCase === "y") {
+      for (var i of lowerCasedCharacters)
         passwordArray.push(i);
-  } if (passwordRecipe.upperCase) {
+  } if (passwordRecipe.upperCase === "y") {
       for (var i of upperCasedCharacters)
         passwordArray.push(i);
-  } if (passwordRecipe.numeric) {
+  } if (passwordRecipe.numeric === "y") {
       for (var i of numericCharacters)
         passwordArray.push(i);
-  } if (passwordRecipe.specialChar) {
+  } if (passwordRecipe.specialChar === "y") {
       for (var i of specialCharacters)
         passwordArray.push(i);
   }
-console.log(passwordArray);
+
+  console.log(passwordArray);
+
+  for (i = 0; i < passwordRecipe.passwordLength; i++) {
+    finalPassword += getRandom(passwordArray);
+  }
+
+return finalPassword;
 
 }
 
