@@ -91,6 +91,8 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+
+  // Object to store user input from prompts
   var passwordOptions = {
     passwordLength: passwordLength,
     lowerCase: lowerCase,
@@ -98,8 +100,12 @@ function getPasswordOptions() {
     numeric: numeric,
     specialChar: specialChar
   };
+  
+  // Loop with nested conditional that breaks only when the right conditions are met
   while (true) {
-    var passwordLength = prompt("How many characters would you like? (between 8 - 128)");
+    // Prompt user for password length
+    var passwordLength = prompt("How many characters would you like? (between 8 - 128)"); //
+    // conditional if statement to validate input.
     if (isNaN(passwordLength)) {
         alert("Enter a valid number");
     } else if (passwordLength >= 8 && passwordLength <= 128) {
@@ -108,15 +114,20 @@ function getPasswordOptions() {
         alert("Password must be between 8 and 128 characters long!");
     }
   }
+
+  // Loop with nested conditional that breaks only when the right conditions are met
   while (true) {
+    // Prompt user for character choices
     var lowerCase = prompt("Do you want to include lower case letters? (answer Y or N)");
     var upperCase = prompt("Do you want to include upper case letters? (answer Y or N)");
     var numeric = prompt("Do you want to include numbers? (answer Y or N)");
     var specialChar = prompt("Do you want to include special characters? (answer Y or N)");
+    // Convert user input to lower case
     lowerCase = lowerCase.toLowerCase();
     upperCase = upperCase.toLowerCase();
     numeric = numeric.toLowerCase();
     specialChar = specialChar.toLowerCase();
+    // conditional if statement to validate user input
     if (lowerCase === "n" && upperCase === "n" && numeric === "n" && specialChar ==="n") { 
         alert("You must choose at least one chacter type");
     } else if (
@@ -125,6 +136,7 @@ function getPasswordOptions() {
         (numeric === "y" || numeric === "n") &&
         (specialChar === "y" || specialChar === "n")
     ) {
+        // stores results in passwordOptions object
         passwordOptions.lowerCase = lowerCase;
         passwordOptions.upperCase = upperCase;
         passwordOptions.numeric = numeric;
@@ -134,6 +146,7 @@ function getPasswordOptions() {
         alert("Please only answer either Y or N");
     }
   }
+  // Ends the function and returns the passwordOptions object
   return passwordOptions;
 }
 
@@ -145,29 +158,31 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  var passwordRecipe = getPasswordOptions();
+  // variable to call the function holding the users options
+  var passwordIngredients = getPasswordOptions();
+  // array to store all the possible characters for the password
   var passwordArray = [];
+  // variable to store the final password as a string
   var finalPassword = "";
 
-   if (passwordRecipe.lowerCase === "y") {
+  // conditional if statements to validate user options and push all possible characters to passwordArray 
+  if (passwordIngredients.lowerCase === "y") {
       for (var i of lowerCasedCharacters)
         passwordArray.push(i);
-  } if (passwordRecipe.upperCase === "y") {
+  } if (passwordIngredients.upperCase === "y") {
       for (var i of upperCasedCharacters)
         passwordArray.push(i);
-  } if (passwordRecipe.numeric === "y") {
+  } if (passwordIngredients.numeric === "y") {
       for (var i of numericCharacters)
         passwordArray.push(i);
-  } if (passwordRecipe.specialChar === "y") {
+  } if (passwordIngredients.specialChar === "y") {
       for (var i of specialCharacters)
         passwordArray.push(i);
-  }
-
-  console.log(passwordArray);
-
-  for (i = 0; i < passwordRecipe.passwordLength; i++) {
+  // Loops through passwordArray according to passwordLength and stores results in finalPassword variable. getRandom function ensures items in passwordArray are picked at random
+  } for (i = 0; i < passwordIngredients.passwordLength; i++) {
     finalPassword += getRandom(passwordArray);
   }
+  // ends function and returns finalPassword
   return finalPassword;
 }
 
