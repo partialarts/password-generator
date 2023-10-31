@@ -8,7 +8,7 @@ The aim was to further use the JavaScript concepts I've learned so far to create
 
 A function containing `while` loops was used to hold the user prompts, with conditional `if` statements nested inside them to validate the user input. One problem I faced was the potential for users to input both upper and lower case letters in the prompts. I found I need to convert the values to lower case using the `.toLowerCase()` method for a consistent result. The values were stored inside a local object which was returned to the function, to be called later on.
 
-Conditional `if` statements were used to check which characters the user had chosen and all the possible characters were pushed from their original arrays and combined into one new one. One challange was how to randomise the password result - I used the `Math.floor()` method inside a function and then called this function within a `for` loop to iterate over the newer array according to the password length. The results were returned to a new variable as a string, this being the final password.
+Conditional `if` statements were used to check which characters the user had chosen and all the possible characters were pushed from their original arrays and combined into one new one. One challange was how to randomise the password result - I used the `Math.floor()` method inside a function and then called this function inside a `for` loop to iterate over the newer array according to the password length. The results were returned to a new variable as a string, this being the final password.
 
 I spent some time organising the code once finished to ensure its readability, trying to group related objects together with clear comments.
 
