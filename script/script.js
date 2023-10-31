@@ -113,6 +113,10 @@ function getPasswordOptions() {
     var upperCase = prompt("Do you want to include upper case letters? (answer Y or N)");
     var numeric = prompt("Do you want to include numbers? (answer Y or N)");
     var specialChar = prompt("Do you want to include special characters? (answer Y or N)");
+    lowerCase = lowerCase.toLowerCase();
+    upperCase = upperCase.toLowerCase();
+    numeric = numeric.toLowerCase();
+    specialChar = specialChar.toLowerCase();
     if (lowerCase === "n" && upperCase === "n" && numeric === "n" && specialChar ==="n") { 
         alert("You must choose at least one chacter type");
     } else if (
@@ -125,9 +129,9 @@ function getPasswordOptions() {
         passwordOptions.upperCase = upperCase;
         passwordOptions.numeric = numeric;
         passwordOptions.specialChar = specialChar;
-        console.log(passwordOptions); break;
+        break;
     } else { 
-        alert("Please only answer either Y or N")
+        alert("Please only answer either Y or N");
     }
   }
   return passwordOptions;
@@ -137,7 +141,7 @@ function getPasswordOptions() {
 function getRandom(arr) {
   var randomise = Math.floor(Math.random() * arr.length);
   return arr[randomise];
-  }
+}
 
 // Function to generate password with user input
 function generatePassword() {
@@ -164,9 +168,7 @@ function generatePassword() {
   for (i = 0; i < passwordRecipe.passwordLength; i++) {
     finalPassword += getRandom(passwordArray);
   }
-
-return finalPassword;
-
+  return finalPassword;
 }
 
 // Get references to the #generate element
